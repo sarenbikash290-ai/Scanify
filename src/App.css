@@ -1,0 +1,93 @@
+.app {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.orb1 {
+    top: -80px;
+    right: -60px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(0, 100, 255, 0.13) 0%, transparent 70%);
+}
+
+.orb2 {
+    top: 60px;
+    left: -80px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(0, 80, 200, 0.08) 0%, transparent 70%);
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.app-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-logo-icon {
+    width: 34px;
+    height: 34px;
+    background: linear-gradient(135deg, #0060dd, #0040aa);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 14px rgba(0, 100, 255, 0.35);
+}
+
+.app-logo-text {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.app-badge {
+    font-size: 11px;
+    color: #4a90d9;
+    background: rgba(0, 100, 255, 0.08);
+    border: 0.5px solid rgba(0, 100, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.app-hero {
+    text-align: center;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.app-hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e8eef8;
+    letter-spacing: -0.8px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.app-hero p {
+    font-size: 13px;
+    color: #3a5070;
+}
