@@ -40,6 +40,15 @@ function ImageUploader() {
             return prev.filter((img) => img.id !== id);
         });
     };
+    const handleRotate = (id) => {
+        // We'll implement this in Step 3
+        console.log('rotate', id);
+    };
+
+    const handleCropOpen = (id) => {
+        // We'll implement this in Step 2
+        console.log('crop', id);
+    };
 
     const handleClearAll = () => {
         images.forEach((img) => URL.revokeObjectURL(img.preview));
@@ -139,12 +148,33 @@ function ImageUploader() {
                             onDrop={() => handleCardDrop(index)}
                         >
                             <img src={img.preview} alt={`page-${index + 1}`} />
+
+                            {/* Top right — remove button */}
                             <button
                                 className="remove-btn"
                                 onClick={() => handleRemove(img.id)}
                             >
                                 ✕
                             </button>
+
+                            {/* Bottom toolbar */}
+                            <div className="card-toolbar">
+                                <button
+                                    className="tool-btn"
+                                    onClick={() => handleRotate(img.id)}
+                                    title="Rotate"
+                                >
+                                    🔄
+                                </button>
+                                <button
+                                    className="tool-btn"
+                                    onClick={() => handleCropOpen(img.id)}
+                                    title="Crop"
+                                >
+                                    ✂
+                                </button>
+                            </div>
+
                             <span className="page-number">{index + 1}</span>
                         </div>
                     ))}

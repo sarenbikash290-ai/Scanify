@@ -260,3 +260,33 @@
     color: #1e1e1e;
     margin-top: 4px;
 }
+
+/* Card toolbar */
+.card-toolbar {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    gap: 5px;
+}
+
+.tool-btn {
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.15s ease;
+    backdrop-filter: blur(4px);
+}
+
+.tool-btn:hover {
+    background: rgba(0, 100, 255, 0.4);
+    border-color: rgba(0, 100, 255, 0.4);
+    transform: scale(1.1);
+}
