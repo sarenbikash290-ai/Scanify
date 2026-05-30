@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+import CropModal from '../CropModal/CropModal';
+import { rotateImage, cropImage } from '../../utils/processImage';
 import './ImageUploader.css';
 import generatePDF from '../../utils/generatePDF';
 import validateFiles from '../../utils/validateFiles';
@@ -12,6 +14,7 @@ function ImageUploader() {
     const [dragOverIndex, setDragOverIndex] = useState(null);
     const inputRef = useRef(null);
     const dragIndex = useRef(null);
+    const [cropTarget, setCropTarget] = useState(null); // { id, preview }
 
     const handleFiles = (files) => {
         const fileArray = Array.from(files);
@@ -40,15 +43,34 @@ function ImageUploader() {
             return prev.filter((img) => img.id !== id);
         });
     };
-    const handleRotate = (id) => {
-        // We'll implement this in Step 3
-        console.log('rotate', id);
-    };
+    const handleRotate = async (id) => {
+  const img = images.find((i) => i.id === id);
+  const newPreview = await rotateImage(img.preview, 90);
+  URL.revokeObjectURL(img.preview); // free old blob
+  setImages((prev) =>
+    prev.map((i) => (i.id === id ? { ...i, preview: newPreview } : i))
+  );
+};
 
-    const handleCropOpen = (id) => {
-        // We'll implement this in Step 2
-        console.log('crop', id);
-    };
+const handleCropOpen = (id) => {
+  const img = images.find((i) => i.id === id);
+  setCropTarget({ id, preview: img.preview });
+};
+
+const handleCropDone = async (croppedAreaPixels) => {
+  const newPreview = await cropImage(cropTarget.preview, croppedAreaPixels);
+  URL.revokeObjectURL(cropTarget.preview); // free old blob
+  setImages((prev) =>
+    prev.map((i) =>
+      i.id === cropTarget.id ? { ...i, preview: newPreview } : i
+    )
+  );
+  setCropTarget(null);
+};
+
+const handleCropCancel = () => {
+  setCropTarget(null);
+};
 
     const handleClearAll = () => {
         images.forEach((img) => URL.revokeObjectURL(img.preview));
@@ -94,7 +116,13 @@ function ImageUploader() {
         <div className="uploader">
             {isGenerating && <Spinner message="Generating your PDF..." />}
 
-            {/* Drop zone */}
+{cropTarget && (
+  <CropModal
+    image={cropTarget.preview}
+    onCancel={handleCropCancel}
+    onCropDone={handleCropDone}
+  />
+)}
             <div
                 className="drop-zone"
                 onClick={() => inputRef.current.click()}
