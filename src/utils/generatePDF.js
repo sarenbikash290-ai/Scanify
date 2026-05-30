@@ -6,7 +6,7 @@ const PAGE_SIZES = {
 };
 
 // Returns a blob if returnBlob is true, otherwise saves directly
-const generatePDF = async (images, pageSize = 'a4', returnBlob = false) => {
+const generatePDF = async (images, pageSize = 'a4', returnBlob = false, password = '') => {
   const { width: pageWidth, height: pageHeight } = PAGE_SIZES[pageSize];
 
   const pdf = new jsPDF({
@@ -41,11 +41,22 @@ const generatePDF = async (images, pageSize = 'a4', returnBlob = false) => {
     isFirstPage = false;
   }
 
-  if (returnBlob) {
-    return pdf.output('blob');
-  }
+  const filename = `scan-${Date.now()}.pdf`;
 
-  pdf.save(`scan-${Date.now()}.pdf`);
+if (returnBlob) {
+  return pdf.output('blob');
+}
+
+// Save with or without password
+if (password) {
+  pdf.save(filename, {
+    userPassword: password,
+    ownerPassword: password + '_owner',
+    userPermissions: ['print', 'copy'],
+  });
+} else {
+  pdf.save(filename);
+}
 };
 
 const loadImage = (src) => {

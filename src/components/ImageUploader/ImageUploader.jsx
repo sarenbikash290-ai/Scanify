@@ -7,6 +7,7 @@ import validateFiles from '../../utils/validateFiles';
 import Spinner from '../Spinner/Spinner';
 import { useGoogleLogin } from '@react-oauth/google';
 import uploadToDrive from '../../utils/uploadToDrive';
+import protectPDF from '../../utils/protectPDF';
 
 function ImageUploader() {
     const [images, setImages] = useState([]);
@@ -18,6 +19,8 @@ function ImageUploader() {
     const dragIndex = useRef(null);
     const [cropTarget, setCropTarget] = useState(null); // { id, preview }
     const [driveSuccess, setDriveSuccess] = useState(false);
+    const [password, setPassword] = useState('');
+const [showPassword, setShowPassword] = useState(false);
     
     const handleDriveUpload = useGoogleLogin({
   scope: 'https://www.googleapis.com/auth/drive.file',
@@ -100,11 +103,28 @@ const handleCropCancel = () => {
     };
 
     const handleConvert = async () => {
-        if (images.length === 0) return;
-        setIsGenerating(true);
-        await generatePDF(images, pageSize);
-        setIsGenerating(false);
-    };
+  if (images.length === 0) return;
+  setIsGenerating(true);
+
+  if (password) {
+    // Generate blob first, then protect it
+    const blob = await generatePDF(images, pageSize, true);
+    const protectedBlob = await protectPDF(blob, password);
+
+    // Download the protected PDF
+    const url = URL.createObjectURL(protectedBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `scan-${Date.now()}.pdf`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } else {
+    // No password — normal download
+    await generatePDF(images, pageSize, false);
+  }
+
+  setIsGenerating(false);
+};
 
     const handleDragStart = (index) => {
         dragIndex.current = index;
@@ -246,6 +266,27 @@ const handleCropCancel = () => {
                             </select>
                         </div>
                     </div>
+
+                    {images.length > 0 && (
+  <div className="password-field">
+    <div className="password-inner">
+      <span className="password-icon">🔒</span>
+      <input
+        type={showPassword ? 'text' : 'password'}
+        placeholder="Set PDF password (optional)"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="password-input"
+      />
+      <button
+        className="password-toggle"
+        onClick={() => setShowPassword((p) => !p)}
+      >
+        {showPassword ? '🙈' : '👁'}
+      </button>
+    </div>
+  </div>
+)}
 
                     <div className="action-bar">
                         <button
