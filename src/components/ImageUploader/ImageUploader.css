@@ -381,7 +381,6 @@
   gap: 8px;
   transition: all 0.2s ease;
   font-family: 'Inter', sans-serif;
-  margin-top: 10px;
 }
 
 .ocr-btn:hover:not(:disabled) {
