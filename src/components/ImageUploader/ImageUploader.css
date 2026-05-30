@@ -290,3 +290,31 @@
     border-color: rgba(0, 100, 255, 0.4);
     transform: scale(1.1);
 }
+.drive-btn {
+  width: 100%;
+  padding: 12px;
+  background: #0f0f0f;
+  border: 0.5px solid #1e1e1e;
+  border-radius: 11px;
+  color: #888;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.drive-btn:hover:not(:disabled) {
+  border-color: #333;
+  color: #aaa;
+  background: #141414;
+}
+
+.drive-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

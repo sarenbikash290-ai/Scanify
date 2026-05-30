@@ -5,6 +5,8 @@ import './ImageUploader.css';
 import generatePDF from '../../utils/generatePDF';
 import validateFiles from '../../utils/validateFiles';
 import Spinner from '../Spinner/Spinner';
+import { useGoogleLogin } from '@react-oauth/google';
+import uploadToDrive from '../../utils/uploadToDrive';
 
 function ImageUploader() {
     const [images, setImages] = useState([]);
@@ -15,6 +17,25 @@ function ImageUploader() {
     const inputRef = useRef(null);
     const dragIndex = useRef(null);
     const [cropTarget, setCropTarget] = useState(null); // { id, preview }
+    const [driveSuccess, setDriveSuccess] = useState(false);
+    
+    const handleDriveUpload = useGoogleLogin({
+  scope: 'https://www.googleapis.com/auth/drive.file',
+  onSuccess: async (tokenResponse) => {
+    setIsGenerating(true);
+    try {
+      const blob = await generatePDF(images, pageSize, true);
+      const filename = `scan-${Date.now()}.pdf`;
+      await uploadToDrive(blob, tokenResponse.access_token, filename);
+      setDriveSuccess(true);
+      setTimeout(() => setDriveSuccess(false), 4000);
+    } catch (err) {
+      console.error('Drive upload failed:', err);
+    }
+    setIsGenerating(false);
+  },
+  onError: (err) => console.error('Google login failed:', err),
+});
 
     const handleFiles = (files) => {
         const fileArray = Array.from(files);
@@ -234,6 +255,23 @@ const handleCropCancel = () => {
                         >
                             ↗ Convert {images.length} image{images.length > 1 ? 's' : ''} to PDF
                         </button>
+                        {images.length > 0 && (
+  <button
+    className="drive-btn"
+    onClick={handleDriveUpload}
+    disabled={isGenerating}
+  >
+    <svg width="16" height="16" viewBox="0 0 87.3 78" fill="none">
+      <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L28 55H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+      <path d="M43.65 25L29.35 0c-1.35.8-2.5 1.9-3.3 3.3L1.2 50.5c-.8 1.4-1.2 2.95-1.2 4.5h28z" fill="#00ac47"/>
+      <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75L86.1 57c.8-1.4 1.2-2.95 1.2-4.5H59.3l5.9 11.5z" fill="#ea4335"/>
+      <path d="M43.65 25L57.95 0H29.35z" fill="#00832d"/>
+      <path d="M59.3 52.5H87.3L73.55 28.15 57.95 0 43.65 25 59.3 52.5z" fill="#2684fc"/>
+      <path d="M28 55l-14.25 21.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2L59.3 52.5H28z" fill="#ffba00"/>
+    </svg>
+    {driveSuccess ? 'Saved to Drive ✓' : 'Save to Google Drive'}
+  </button>
+)}
                         <button
                             className="clear-btn"
                             onClick={handleClearAll}

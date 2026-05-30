@@ -5,7 +5,8 @@ const PAGE_SIZES = {
   letter: { width: 216, height: 279 },
 };
 
-const generatePDF = async (images, pageSize = 'a4') => {
+// Returns a blob if returnBlob is true, otherwise saves directly
+const generatePDF = async (images, pageSize = 'a4', returnBlob = false) => {
   const { width: pageWidth, height: pageHeight } = PAGE_SIZES[pageSize];
 
   const pdf = new jsPDF({
@@ -38,6 +39,10 @@ const generatePDF = async (images, pageSize = 'a4') => {
 
     pdf.addImage(imageData.src, 'JPEG', x, y, width, height);
     isFirstPage = false;
+  }
+
+  if (returnBlob) {
+    return pdf.output('blob');
   }
 
   pdf.save(`scan-${Date.now()}.pdf`);
