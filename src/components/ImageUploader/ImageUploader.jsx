@@ -8,6 +8,7 @@ import Spinner from '../Spinner/Spinner';
 import { useGoogleLogin } from '@react-oauth/google';
 import uploadToDrive from '../../utils/uploadToDrive';
 import protectPDF from '../../utils/protectPDF';
+import OCRModal from '../OCRModal/OCRModal';
 
 function ImageUploader() {
     const [images, setImages] = useState([]);
@@ -21,6 +22,7 @@ function ImageUploader() {
     const [driveSuccess, setDriveSuccess] = useState(false);
     const [password, setPassword] = useState('');
 const [showPassword, setShowPassword] = useState(false);
+const [showOCR, setShowOCR] = useState(false);
     
     const handleDriveUpload = useGoogleLogin({
   scope: 'https://www.googleapis.com/auth/drive.file',
@@ -162,6 +164,12 @@ const handleCropCancel = () => {
     image={cropTarget.preview}
     onCancel={handleCropCancel}
     onCropDone={handleCropDone}
+  />
+)}
+{showOCR && (
+  <OCRModal
+    images={images}
+    onClose={() => setShowOCR(false)}
   />
 )}
             <div
@@ -311,6 +319,15 @@ const handleCropCancel = () => {
       <path d="M28 55l-14.25 21.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2L59.3 52.5H28z" fill="#ffba00"/>
     </svg>
     {driveSuccess ? 'Saved to Drive ✓' : 'Save to Google Drive'}
+  </button>
+)}
+{images.length > 0 && (
+  <button
+    className="ocr-btn"
+    onClick={() => setShowOCR(true)}
+    disabled={isGenerating}
+  >
+    🔍 Extract Text (OCR)
   </button>
 )}
                         <button

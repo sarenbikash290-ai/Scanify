@@ -1,0 +1,193 @@
+.ocr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+}
+
+.ocr-modal {
+  background: #111;
+  border: 0.5px solid #222;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ocr-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid #1e1e1e;
+  flex-shrink: 0;
+}
+
+.ocr-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8eef8;
+}
+
+.ocr-close {
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid #222;
+  color: #666;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.ocr-close:hover {
+  background: rgba(220,50,50,0.3);
+  color: #ff6b6b;
+}
+
+/* Processing */
+.ocr-processing {
+  padding: 32px 24px;
+}
+
+.ocr-status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.ocr-progress-bar {
+  height: 4px;
+  background: #1e1e1e;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.ocr-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0060dd, #0090ff);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.ocr-hint {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+}
+
+/* Results — fixed height with scroll */
+.ocr-results {
+  height: 380px;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.ocr-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ocr-results::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+.ocr-results::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 3px;
+}
+
+.ocr-results::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+.ocr-page {
+  background: #0a0a0a;
+  border: 0.5px solid #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ocr-page-label {
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0060dd;
+  background: rgba(0,100,255,0.06);
+  border-bottom: 0.5px solid #1a1a1a;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ocr-text {
+  padding: 14px;
+  font-size: 13px;
+  color: #888;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Actions */
+.ocr-actions {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 0.5px solid #1a1a1a;
+  flex-shrink: 0;
+}
+
+.ocr-copy-btn {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: 0.5px solid #222;
+  border-radius: 10px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+
+.ocr-copy-btn:hover {
+  border-color: #444;
+  color: #aaa;
+}
+
+.ocr-download-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #0060dd, #0040aa);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0,80,200,0.25);
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+
+.ocr-download-btn:hover {
+  box-shadow: 0 0 24px rgba(0,80,200,0.4);
+  transform: translateY(-1px);
+}
