@@ -1,28 +1,31 @@
 .spinner-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(245,240,235,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
+  backdrop-filter: blur(8px);
 }
 
 .spinner-box {
   background: #fff;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 32px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 
 .spinner-circle {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #eee;
-  border-top-color: #222;
+  width: 36px;
+  height: 36px;
+  border: 2.5px solid #f0ebe4;
+  border-top-color: #1a1a1a;
   border-radius: 50%;
   animation: spin 0.75s linear infinite;
 }
@@ -33,6 +36,7 @@
 
 .spinner-message {
   font-size: 14px;
-  color: #444;
+  color: #888;
   font-weight: 500;
+  font-family: 'Inter', sans-serif;
 }

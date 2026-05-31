@@ -1,22 +1,23 @@
 .ocr-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(245,240,235,0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
 }
 
 .ocr-modal {
-  background: #111;
-  border: 0.5px solid #222;
-  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
   width: 90%;
   max-width: 560px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.1);
 }
 
 .ocr-header {
@@ -24,20 +25,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  border-bottom: 0.5px solid #1e1e1e;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   flex-shrink: 0;
 }
 
 .ocr-header h3 {
   font-size: 15px;
-  font-weight: 600;
-  color: #e8eef8;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 .ocr-close {
-  background: rgba(255,255,255,0.06);
-  border: 0.5px solid #222;
-  color: #666;
+  background: #f9f7f5;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: #999;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -50,11 +51,11 @@
 }
 
 .ocr-close:hover {
-  background: rgba(220,50,50,0.3);
-  color: #ff6b6b;
+  background: #ff4444;
+  color: #fff;
+  border-color: #ff4444;
 }
 
-/* Processing */
 .ocr-processing {
   padding: 32px 24px;
 }
@@ -63,13 +64,13 @@
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: #666;
+  color: #999;
   margin-bottom: 10px;
 }
 
 .ocr-progress-bar {
-  height: 4px;
-  background: #1e1e1e;
+  height: 3px;
+  background: #f0ebe4;
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 16px;
@@ -77,18 +78,17 @@
 
 .ocr-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #0060dd, #0090ff);
+  background: #1a1a1a;
   border-radius: 2px;
   transition: width 0.3s ease;
 }
 
 .ocr-hint {
   font-size: 12px;
-  color: #333;
+  color: #ccc;
   text-align: center;
 }
 
-/* Results — fixed height with scroll */
 .ocr-results {
   height: 380px;
   overflow-y: auto;
@@ -100,25 +100,21 @@
 }
 
 .ocr-results::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 .ocr-results::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #f9f7f5;
 }
 
 .ocr-results::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 3px;
-}
-
-.ocr-results::-webkit-scrollbar-thumb:hover {
-  background: #333;
+  background: #e8e2dc;
+  border-radius: 2px;
 }
 
 .ocr-page {
-  background: #0a0a0a;
-  border: 0.5px solid #1e1e1e;
+  background: #f9f7f5;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
@@ -127,10 +123,10 @@
 .ocr-page-label {
   padding: 8px 14px;
   font-size: 11px;
-  font-weight: 600;
-  color: #0060dd;
-  background: rgba(0,100,255,0.06);
-  border-bottom: 0.5px solid #1a1a1a;
+  font-weight: 700;
+  color: #1a1a1a;
+  background: #f0ebe4;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -144,22 +140,21 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Actions */
 .ocr-actions {
   display: flex;
   gap: 10px;
   padding: 14px 20px;
-  border-top: 0.5px solid #1a1a1a;
+  border-top: 1px solid rgba(0,0,0,0.06);
   flex-shrink: 0;
 }
 
 .ocr-copy-btn {
   flex: 1;
   padding: 12px;
-  background: transparent;
-  border: 0.5px solid #222;
+  background: #f9f7f5;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 10px;
-  color: #666;
+  color: #aaa;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -168,26 +163,25 @@
 }
 
 .ocr-copy-btn:hover {
-  border-color: #444;
-  color: #aaa;
+  border-color: rgba(0,0,0,0.15);
+  color: #666;
 }
 
 .ocr-download-btn {
   flex: 1;
   padding: 12px;
-  background: linear-gradient(135deg, #0060dd, #0040aa);
+  background: #1a1a1a;
   border: none;
   border-radius: 10px;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 0 16px rgba(0,80,200,0.25);
   transition: all 0.15s;
   font-family: 'Inter', sans-serif;
 }
 
 .ocr-download-btn:hover {
-  box-shadow: 0 0 24px rgba(0,80,200,0.4);
+  background: #333;
   transform: translateY(-1px);
 }

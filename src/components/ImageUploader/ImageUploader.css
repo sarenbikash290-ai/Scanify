@@ -2,50 +2,45 @@
 .uploader {
   background: #fff;
   border-radius: 20px;
-  padding: 48px 40px;
-  box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+  padding: 32px 28px;
+  box-shadow: 0 2px 40px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
   position: relative;
 }
 
 /* Drop zone */
 .drop-zone {
   text-align: center;
-  cursor: pointer;
-  padding: 8px 24px 32px;
-  transition: all 0.2s ease;
-}
-
-.drop-zone:hover .drop-zone-icon {
-  background: #ede8e2;
+  cursor: default;
+  padding: 8px 24px 24px;
 }
 
 .drop-zone-icon {
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
   background: #f5f0eb;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 14px;
   border: 1px solid rgba(0,0,0,0.06);
-  transition: background 0.2s ease;
 }
 
 .drop-zone h3 {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: #1a1a1a;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .drop-zone p {
   font-size: 13px;
   color: #bbb;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .choose-btn {
+  display: inline-block;
   background: #1a1a1a;
   color: #fff;
   border: none;
@@ -56,8 +51,7 @@
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   transition: all 0.2s ease;
-  margin-bottom: 12px;
-  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .choose-btn:hover {
@@ -67,16 +61,16 @@
 
 .upload-hint {
   display: block;
-  font-size: 12px;
+  font-size: 11px;
   color: #ccc;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 /* Divider */
 .divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
-  margin: 32px 0;
+  margin: 20px 0;
 }
 
 /* Error box */
@@ -97,16 +91,16 @@
 /* Preview grid */
 .preview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .preview-card {
   aspect-ratio: 3/4;
   background: #f9f7f5;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   cursor: grab;
@@ -139,16 +133,16 @@
 
 .remove-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   background: rgba(255,255,255,0.9);
   border: 1px solid rgba(0,0,0,0.08);
   color: #999;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -164,37 +158,37 @@
 
 .page-number {
   position: absolute;
-  bottom: 8px;
-  left: 8px;
+  bottom: 6px;
+  left: 6px;
   background: rgba(255,255,255,0.9);
   border: 1px solid rgba(0,0,0,0.06);
   color: #999;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 20px;
 }
 
 /* Card toolbar */
 .card-toolbar {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 6px;
+  right: 6px;
   display: flex;
-  gap: 5px;
+  gap: 4px;
 }
 
 .tool-btn {
   background: rgba(255,255,255,0.9);
   border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 11px;
   transition: all 0.15s ease;
 }
 
@@ -205,7 +199,7 @@
 
 /* Controls */
 .size-selector {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .size-selector-inner {
@@ -242,7 +236,7 @@
 
 /* Password field */
 .password-field {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .password-inner {
@@ -292,18 +286,18 @@
 .action-bar {
   display: flex;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .convert-btn {
   flex: 1;
-  padding: 14px;
+  padding: 13px;
   background: #1a1a1a;
   color: #fff;
   font-size: 14px;
   font-weight: 700;
   border: none;
-  border-radius: 11px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -326,13 +320,13 @@
 }
 
 .clear-btn {
-  padding: 14px 18px;
+  padding: 13px 16px;
   background: #f9f7f5;
   color: #aaa;
   font-size: 13px;
   font-weight: 500;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 11px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -354,12 +348,12 @@
 /* Drive button */
 .drive-btn {
   width: 100%;
-  padding: 12px;
+  padding: 11px;
   background: #f9f7f5;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 11px;
+  border-radius: 10px;
   color: #aaa;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
@@ -383,12 +377,12 @@
 /* OCR button */
 .ocr-btn {
   width: 100%;
-  padding: 12px;
+  padding: 11px;
   background: #f9f7f5;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 11px;
+  border-radius: 10px;
   color: #aaa;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
