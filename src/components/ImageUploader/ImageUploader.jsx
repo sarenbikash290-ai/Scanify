@@ -173,20 +173,23 @@ const handleCropCancel = () => {
   />
 )}
             <div
-                className="drop-zone"
-                onClick={() => inputRef.current.click()}
-                onDrop={handleDrop}
-                onDragOver={(e) => e.preventDefault()}
-            >
+  className="drop-zone"
+  onDrop={handleDrop}
+  onDragOver={(e) => e.preventDefault()}
+>
                 <div className="drop-zone-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0060dd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="16 16 12 12 8 16" />
-                        <line x1="12" y1="12" x2="12" y2="21" />
-                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
-                    </svg>
-                </div>
-                <h3>Drop your images here</h3>
-                <p>JPG, PNG supported · Max 10MB each</p>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="16 16 12 12 8 16"/>
+    <line x1="12" y1="12" x2="12" y2="21"/>
+    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+  </svg>
+</div>
+<h3>Select JPG or PNG images</h3>
+<p>or drag and drop them here</p>
+<button className="choose-btn" onClick={() => inputRef.current.click()}>
+  Choose Files
+</button>
+<span className="upload-hint">Supports JPG, PNG — Max 10MB each</span>
             </div>
 
             <input
